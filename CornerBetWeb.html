@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7477761171807312"
+     crossorigin="anonymous"></script>
+    <title>Palpites do Dia</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <style>
+        /* SEU CSS ORIGINAL (INTACTO) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 0; /* Ajuste para o navbar */
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #1a3e72;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .date {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .match-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .match-header {
+            background: linear-gradient(to right, #1a3e72, #2a5a8f);
+            color: white;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .match-content {
+            padding: 15px;
+        }
+        
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+        
+        .team img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
+        .team-name {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .vs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+        
+        .time {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a3e72;
+            margin-bottom: 5px;
+        }
+        
+        .vs-text {
+            background: #f0f0f0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .prediction {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #1a3e72;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .no-matches {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .app-promo {
+            background: linear-gradient(to right, #1a3e72, #2a5a8f);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .app-promo h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .app-promo p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: white;
+            color: #1a3e72;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            background-color: #fde8e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .view-more {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .view-more button {
+            background: #1a3e72;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* NOVO CSS APENAS PARA O NAVBAR (SEM ALTERAR O RESTANTE) */
+        .navbar {
+            background: linear-gradient(to right, #1a3e72, #2a5a8f);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .nav-link.active {
+            font-weight: bold;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- BARRA DE NAVEGAÇÃO ADICIONADA (ÚNICA ALTERAÇÃO NO HTML) -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">Palpites do Dia</a>
+        <ul class="navbar-nav">
+            <li><a href="#" class="nav-link active">Tips</a></li>
+            <li><a href="I.A.html" class="nav-link">I.A</a></li>
+            <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        </ul>
+    </nav>
+
+    <!-- SEU CONTEÚDO ORIGINAL (INTACTO) -->
+    <div class="container">
+        <header>
+            <h1>CornerBet Pro</h1>
+            <div class="date" id="current-date">Carregando...</div>
+        </header>
+        
+        <div id="error-container"></div>
+        
+        <div id="matches-container">
+            <div class="loading">Carregando jogos do dia...</div>
+        </div>
+        
+        <div class="app-promo">
+    <h3>Baixe nosso app!</h3>
+    <p>Para mais palpites e estatísticas detalhadas, instale nosso aplicativo.</p>
+    <button class="download-btn" onclick="window.open('https://play.google.com/store/apps/details?id=cornerbet.com', '_blank')">Baixar Agora</button>
+</div>
+</div>
+
+<!-- SEU SCRIPT ORIGINAL (INTACTO) -->
+<script>
+    // Configuração do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyALuO4RXHaL2rM9u8lQXlFDjmcQU2yyimw",
+        authDomain: "saja-95ab6.firebaseapp.com",
+        databaseURL: "https://saja-95ab6.firebaseio.com",
+        projectId: "saja-95ab6",
+        storageBucket: "saja-95ab6.appspot.com",
+        messagingSenderId: "589105547794",
+        appId: "1:589105547794:web:365f6f72555fe56ff3e6cb"
+    };
+    
+    try {
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+    } catch (error) {
+        showError('Erro ao inicializar o Firebase: ' + error.message);
+        console.error("Erro de inicialização:", error);
+    }
+    
+    // Atualiza a data atual
+    const currentDate = new Date();
+    const dayOfMonth = currentDate.getDate();
+    document.getElementById('current-date').textContent = currentDate.toLocaleDateString('pt-BR', { 
+        weekday: 'long', 
+        day: 'numeric', 
+        month: 'long' 
+    }).replace(/^\w/, c => c.toUpperCase());
+    
+    // Função para mostrar erros
+    function showError(message) {
+        const errorContainer = document.getElementById('error-container');
+        errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+    }
+    
+    // Busca os dados do Firebase
+    function loadMatches() {
+        const matchesContainer = document.getElementById('matches-container');
+        const database = firebase.database();
+        
+        // Referência corrigida para o caminho dos dados
+        const matchesRef = database.ref('PalpitesDate/' + dayOfMonth);
+        
+        matchesRef.once('value').then((snapshot) => {
+            if (!snapshot.exists()) {
+                matchesContainer.innerHTML = '<div class="no-matches">Nenhum jogo encontrado para hoje.</div>';
+                return;
+            }
+            
+            const matchesData = snapshot.val();
+            let html = '';
+            
+            // Converte para array independentemente da estrutura
+            let matchesArray = [];
+            if (Array.isArray(matchesData)) {
+                matchesArray = matchesData;
+            } else if (typeof matchesData === 'object') {
+                // Ordena as chaves numericamente
+                const sortedKeys = Object.keys(matchesData).sort((a, b) => a - b);
+                matchesArray = sortedKeys.map(key => matchesData[key]);
+            }
+            
+            // Processa até 4 jogos (índices 0-15)
+            const totalMatches = Math.min(4, Math.floor(matchesArray.length / 4));
+            
+            for (let i = 0; i < totalMatches; i++) {
+                const baseIndex = i * 4;
+                if (baseIndex + 3 >= matchesArray.length) break;
+                
+                try {
+                    const matchString = matchesArray[baseIndex] || '';
+                    const matchInfo = matchString.split(/\s{2,}/);
+                    
+                    const team1 = matchInfo[0]?.trim() || "Time 1";
+                    const time = matchInfo[1]?.trim() || "--:--";
+                    const team2 = matchInfo[2]?.trim() || "Time 2";
+                    const prediction = matchesArray[baseIndex + 1] || "+? Escanteios";
+                    const team1Logo = matchesArray[baseIndex + 2] || "https://via.placeholder.com/50?text=LOGO";
+                    const team2Logo = matchesArray[baseIndex + 3] || "https://via.placeholder.com/50?text=LOGO";
+                    
+                    html += `
+                        <div class="match-card">
+                            <div class="match-header">Jogo ${i + 1}</div>
+                            <div class="match-content">
+                                <div class="teams">
+                                    <div class="team">
+                                        <img src="${team1Logo}" alt="${team1}" onerror="this.src='https://via.placeholder.com/50?text=LOGO'">
+                                        <div class="team-name">${team1}</div>
+                                    </div>
+                                    <div class="vs">
+                                        <div class="time">${time}</div>
+                                        <div class="vs-text">VS</div>
+                                    </div>
+                                    <div class="team">
+                                        <img src="${team2Logo}" alt="${team2}" onerror="this.src='https://via.placeholder.com/50?text=LOGO'">
+                                        <div class="team-name">${team2}</div>
+                                    </div>
+                                </div>
+                                <div class="prediction">${prediction}</div>
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error("Erro ao processar jogo:", error);
+                    continue;
+                }
+            }
+            
+            if (html === '') {
+                matchesContainer.innerHTML = '<div class="no-matches">Nenhum jogo válido encontrado para hoje.</div>';
+            } else {
+                matchesContainer.innerHTML = html;
+                
+                // Verifica se há mais jogos disponíveis
+                if (matchesArray.length > 16) {
+                    matchesContainer.innerHTML += `
+                        <div class="view-more">
+                            <button onclick="loadMoreMatches()">Ver Mais Jogos</button>
+                        </div>
+                    `;
+                }
+            }
+        }).catch((error) => {
+            let errorMessage = 'Erro ao carregar os jogos. Tente novamente mais tarde.';
+            
+            if (error.code === 'PERMISSION_DENIED') {
+                errorMessage = 'Permissão negada. Verifique as regras de segurança do Firebase.';
+            }
+            
+            showError(errorMessage);
+            matchesContainer.innerHTML = '';
+            console.error("Erro ao buscar dados:", error);
+        });
+    }
+    
+    // Função para carregar mais jogos (opcional)
+    function loadMoreMatches() {
+        // Implementação similar à loadMatches() mas para os próximos jogos
+        alert("Funcionalidade de ver mais jogos pode ser implementada aqui!");
+    }
+    
+    // Inicia o carregamento dos dados
+    if (firebase.apps.length > 0) {
+        loadMatches();
+    } else {
+        showError('Falha ao conectar com o Firebase');
+    }
+</script>
+</body>
+</html>
