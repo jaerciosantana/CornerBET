@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Analisador de Partidas - Escanteios</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071028 0%, #07192e 60%);color:#e6eef8;display:flex;align-items:center;justify-content:center;padding:24px}
+    .wrap{width:980px;max-width:98%;display:grid;grid-template-columns:1fr 420px;gap:20px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h1{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+
+    form .row{display:flex;gap:12px;margin-bottom:12px}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type=number]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;font-size:15px}
+    .col{flex:1}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#06b6d4);border:none;color:#04202a;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(16,185,129,0.12);transform:translateY(0);transition:transform .18s ease, box-shadow .18s ease
+    }
+    .btn:active{transform:translateY(2px);box-shadow:0 4px 18px rgba(2,6,23,0.6)}
+
+    /* animated pulse */
+    .btn .pulse{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.9);box-shadow:0 0 0 0 rgba(255,255,255,0.2);animation:pulse 1.6s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.2)}70%{box-shadow:0 0 0 12px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+    .result{min-height:120px;max-height:66vh;overflow:auto;padding:12px;border-radius:10px;background:rgba(2,6,23,0.4);border:1px solid rgba(255,255,255,0.02)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px;margin-right:8px}
+
+    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .hint{font-size:13px;color:var(--muted)}
+
+    /* small right column */
+    .side .card{padding:16px}
+    .rule{padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:8px;font-size:13px}
+
+    footer{margin-top:14px;color:var(--muted);font-size:13px}
+    .small{font-size:12px;color:var(--muted)}
+    
+
+    /* responsive */
+    @media (max-width:880px){.wrap{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+    
+  <div class="wrap">
+    <div class="card">
+      <h1>Analisador de escanteios — protótipo</h1>
+      <p class="lead">Cole os valores da partida (usuário insere manualmente). O motor aplica regras e retorna sugestões para investir em escanteios.</p>
+
+      <form id="form" onsubmit="event.preventDefault();runAnalysis();">
+        <div class="row">
+          <div class="col">
+            <label for="minuto">Minuto</label>
+            <input id="minuto" type="number" min="0" max="120" placeholder="Ex: 18" required>
+          </div>
+          <div class="col">
+            <label for="escanteios">Escanteios (total)</label>
+            <input id="escanteios" type="number" min="0" placeholder="Ex: 7" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="golsCasa">Gols — Casa</label>
+            <input id="golsCasa" type="number" min="0" placeholder="Ex: 1" required>
+          </div>
+          <div class="col">
+            <label for="golsFora">Gols — Fora</label>
+            <input id="golsFora" type="number" min="0" placeholder="Ex: 1" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="ataquesCasa">Ataques (Casa) — %</label>
+            <input id="ataquesCasa" type="number" min="0" max="100" placeholder="Ex: 55" required>
+          </div>
+          <div class="col">
+            <label for="ataquesFora">Ataques (Fora) — %</label>
+            <input id="ataquesFora" type="number" min="0" max="100" placeholder="Ex: 45" required>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+          <button class="btn" type="submit"><span class="pulse" aria-hidden></span> Analisar partida</button>
+          <div class="hint small">Resultado aparece ao lado direito.</div>
+        </div>
+      </form>
+
+      <div style="margin-top:16px">
+        <div class="meta">
+          <div class="tag">Regras: personalizáveis</div>
+          <div class="tag">Protótipo</div>
+          <div class="tag">Versão: 1.0</div>
+        </div>
+
+        <div id="output" class="result">
+          <div class="small">Aguardando análise... preencha os campos e clique em <strong>Analisar partida</strong>.</div>
+        </div>
+
+        <footer>
+          <div class="small">Observação: este é um protótipo. Regras podem ser ajustadas conforme sua lista completa.</div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h3 style="margin-top:0">Regras aplicadas (resumo)</h3>
+        <div class="rule">1. Minuto &lt; 40, gols iguais e escanteios &gt; 6 → Jogo médio para cantos.</div>
+        <div class="rule">2. Minuto &lt; 44, escanteios &gt; 5 + equipe com mais ataques está perdendo → possibilidade de &gt;12 cantos.</div>
+        <div class="rule">3. Minuto &gt; 20, sem gols e escanteios ≤ 2 + ataques parecidos → jogo morno para cantos.</div>
+        <div class="rule">4. Minuto entre 44 e 65, mandante perdendo e escanteios &gt; 7 → bom para investir em cantos.</div>
+        <div class="rule">5. Minuto &gt; 50, empate e escanteios &lt; 4 → ruim para escanteios.</div>
+        <div class="rule">Extras: pressão alta (ataques ≥60%), muitos cantos cedo, diferença grande de ataques, etc.</div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+        <div class="small">Dica: use valores reais do seu app Kodular. Posso exportar a lógica em JSON para transformar em blocos, se quiser.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runAnalysis(){
+      const minuto = Number(document.getElementById('minuto').value);
+      const escanteios = Number(document.getElementById('escanteios').value);
+      const golsCasa = Number(document.getElementById('golsCasa').value);
+      const golsFora = Number(document.getElementById('golsFora').value);
+      const ataquesCasa = Number(document.getElementById('ataquesCasa').value);
+      const ataquesFora = Number(document.getElementById('ataquesFora').value);
+
+      const output = document.getElementById('output');
+      output.innerHTML = '';
+
+      // validação básica
+      const campos = [minuto, escanteios, golsCasa, golsFora, ataquesCasa, ataquesFora];
+      if (campos.some(v => Number.isNaN(v))){
+        output.innerHTML = '<div class="small">Preencha todos os campos corretamente.</div>';
+        return;
+      }
+
+      const results = [];
+
+      // Regra 1
+      if (minuto < 40 && golsCasa === golsFora && escanteios > 6) {
+        results.push({text: 'Jogo médio para escanteios (base: minutos <40, empate e >6 escanteios).', confidence: 'Média'});
+      }
+
+      // Regra 2 (sua regra principal)
+      const casaComMaisAtaques = ataquesCasa > ataquesFora;
+      if (minuto < 44 && escanteios > 5 && (
+        (casaComMaisAtaques && golsCasa < golsFora) || (!casaComMaisAtaques && golsFora < golsCasa)
+      )){
+        results.push({text: 'Jogo bom para escanteios — possibilidade de passar de 12 escanteios até o fim.', confidence: 'Alta'});
+      }
+
+      // Regra 3
+      if (minuto > 20 && golsCasa === 0 && golsFora === 0 && escanteios <= 2 && Math.abs(ataquesCasa - ataquesFora) <= 6){
+        results.push({text: 'Ataques parecidos, sem gols e poucos escanteios — partida morna para cantos.', confidence: 'Baixa'});
+      }
+
+      // Regra 4
+      if (minuto >= 44 && minuto <= 65 && golsCasa < golsFora && escanteios > 7){
+        results.push({text: 'Entre 44 e 65 min + mandante perdendo + >7 escanteios: bom para investir em escanteios do mandante.', confidence: 'Alta'});
+      }
+
+      // Regra 5
+      if (minuto > 50 && golsCasa === golsFora && escanteios < 4){
+        results.push({text: 'Jogo ruim para escanteios (minuto >50, empate e <4 escanteios).', confidence: 'Média'});
+      }
+
+      // Extras que adicionei com base nas suas regras
+      // Pressão alta do mandante
+      if (ataquesCasa >= 60 && minuto < 30 && escanteios >= 3){
+        results.push({text: 'Mandante com pressão alta (ataques ≥60%) - chance de escanteios próximos.', confidence: 'Média'});
+      }
+      // Pressão alta do visitante
+      if (ataquesFora >= 60 && minuto < 30 && escanteios >= 3){
+        results.push({text: 'Visitante com pressão alta (ataques ≥60%) - chance de escanteios próximos.', confidence: 'Média'});
+      }
+      // Muitos cantos cedo
+      if (minuto < 20 && escanteios >= 6){
+        results.push({text: 'Muitos escanteios cedo no jogo — ritmo alto, probabilidade de mais cantos.', confidence: 'Alta'});
+      }
+      // Diferença grande de ataques
+      if (Math.abs(ataquesCasa - ataquesFora) >= 25 && escanteios >= 4){
+        const stronger = ataquesCasa > ataquesFora ? 'Casa' : 'Fora';
+        results.push({text: `Grande domínio de ataques pela equipe ${stronger} — foco em oportunidades da equipe dominante.`, confidence: 'Média'});
+      }
+
+      // Heurística combinada: se muitas condições altas se aplicarem => aumentar confiança
+      // calculamos score simples
+      let score = 0;
+      results.forEach(r=>{
+        if (r.confidence === 'Alta') score += 2;
+        else if (r.confidence === 'Média') score += 1;
+      });
+
+      // construir saída
+      if (results.length === 0){
+        output.innerHTML = '<div class="small">Nenhuma regra foi acionada para este conjunto de valores. Considere atualizar regras ou revisar os dados.</div>';
+        return;
+      }
+
+      const ul = document.createElement('div');
+      results.forEach((r, idx)=>{
+        const div = document.createElement('div');
+        div.style.padding = '10px';
+        div.style.borderRadius = '8px';
+        div.style.marginBottom = '10px';
+        div.style.background = 'linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))';
+
+        const title = document.createElement('div');
+        title.style.fontWeight = '700';
+        title.textContent = r.text;
+        const meta = document.createElement('div');
+        meta.className = 'small';
+        meta.style.marginTop = '6px';
+        meta.style.color = 'var(--muted)';
+        meta.textContent = 'Confiança: ' + r.confidence;
+
+        div.appendChild(title);
+        div.appendChild(meta);
+        ul.appendChild(div);
+      });
+
+      // score badge
+      const badge = document.createElement('div');
+      badge.style.padding = '10px';
+      badge.style.borderRadius = '10px';
+      badge.style.marginBottom = '12px';
+      badge.style.fontWeight = '700';
+      badge.textContent = `Pontuação heurística: ${score}`;
+      ul.insertBefore(badge, ul.firstChild);
+
+      output.appendChild(ul);
+
+      // opcional: destacar regras que se aplicam no painel lateral (simples)
+      highlightAppliedRules(results);
+    }
+
+    function highlightAppliedRules(results){
+      // simples: se houver resultados, pisca levemente
+      if (!results || results.length === 0) return;
+      const card = document.querySelector('.side .card');
+      card.style.transition = 'box-shadow .3s ease, transform .2s ease';
+      card.style.boxShadow = '0 10px 40px rgba(16,185,129,0.06)';
+      card.style.transform = 'translateY(-3px)';
+      setTimeout(()=>{card.style.boxShadow = '';card.style.transform='';},800);
+    }
+
+    // Accessibility: allow Enter on inputs to submit
+    document.getElementById('form').addEventListener('submit', runAnalysis);
+  </script>
+</body>
+</html>
