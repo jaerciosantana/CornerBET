@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Especialistas em Análise de Escanteios</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2E86AB;
+            --secondary: #F18F01;
+            --dark: #2D3047;
+            --light: #F7F7FF;
+            --success: #5CB85C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(241, 143, 1, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(241, 143, 1, 0.6);
+            background-color: #e68100;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-section {
+            background-color: var(--primary);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .app-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .app-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .app-image img {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-content {
+            flex: 1;
+            min-width: 300px;
+            padding-left: 40px;
+        }
+
+        .app-content h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .app-content p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        .stats {
+            background-color: var(--dark);
+            padding: 60px 0;
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-text, .app-content {
+                padding-right: 0;
+                padding-left: 0;
+                margin-bottom: 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>CornerAnalytics</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="analises.html">Análises</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Conheça nossa história e metodologia</h1>
+                <p>Especialistas em análise de escanteios desde 2017, transformando dados em resultados para apostadores.</p>
+                <a href="#app" class="btn">Conheça nosso App</a>
+                <a href="contato.html" class="btn btn-outline">Fale Conosco</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quem Somos</h2>
+                <p>Um grupo apaixonado por futebol e análise de dados, dedicado a fornecer as melhores informações para apostadores.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nossa Jornada no Mundo das Apostas</h3>
+                    <p>Desde 2017, estamos no mercado de análises de futebol, com foco especial em escanteios. Começamos como um pequeno grupo de apostadores entusiastas que identificou padrões e oportunidades nesse mercado específico.</p>
+                    <p>Com o tempo, nossa abordagem baseada em dados e estatísticas nos diferenciou, e começamos a desenvolver ferramentas e metodologias próprias para aprimorar nossas previsões.</p>
+                    <p>Hoje, somos referência no segmento de análise de escanteios, ajudando milhares de apostadores a tomar decisões mais informadas e aumentar seus ganhos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Equipe analisando dados de futebol">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section" id="app">
+        <div class="container">
+            <div class="app-container">
+                <div class="app-image">
+                    <img src="https://via.placeholder.com/300x500" alt="Aplicativo CornerBet">
+                </div>
+                <div class="app-content">
+                    <h3>CornerBet: A Inteligência por Trás das Apostas em Escanteios</h3>
+                    <p>Imagine ter um aliado que combina o poder da programação, da matemática e da análise de dados para prever com precisão as chances de escanteios em jogos de futebol.</p>
+                    <p>Esse é o CornerBet: uma ferramenta desenvolvida por programadores e matemáticos especializados, capaz de calcular em milésimos de segundos a probabilidade de escanteios no jogo que você está assistindo.</p>
+                    <a href="https://play.google.com/store/apps/details?id=cornerbet.com" class="btn" target="_blank">
+                        <i class="fab fa-google-play"></i> Baixar na Play Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Funciona?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Nosso algoritmo avançado analisa diariamente mais de 1.000 jogos, coletando e processando dados em tempo real para identificar as partidas com maior probabilidade de escanteios. Com base em estatísticas precisas, o CornerBet oferece informações claras e confiáveis, mostrando em porcentagem os riscos e oportunidades de cada aposta.</p>
+                    <p>Desenvolvido após anos de estudos sobre probabilidades e padrões de escanteios no futebol, o CornerBet foi criado para oferecer valores quase exatos de forma simples e eficaz. Nosso principal objetivo é fornecer a você informações confiáveis e estratégias que realmente funcionam, para que você possa apostar com segurança e inteligência.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Análise de dados de futebol">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Diferencial que Você Precisa</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h4>96% de Acerto</h4>
+                    <p>6 palpites diários com taxa de assertividade impressionante para decisões inteligentes que potencializam seus ganhos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Cresça Sua Banca</h4>
+                    <p>Análises precisas e estratégias comprovadas para maximizar seus lucros de forma consistente todos os dias.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Tecnologia de Ponta</h4>
+                    <p>Algoritmo exclusivo que prevê em milésimos de segundos o que pode acontecer nos próximos minutos do jogo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Anos no Mercado</p>
+                </div>
+                <div class="stat-item">
+                    <h3>96%</h3>
+                    <p>Taxa de Acerto</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Jogos Analisados Diariamente</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10K+</h3>
+                    <p>Usuários Satisfeitos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para Transformar Suas Apostas?</h2>
+            <p>Junte-se a milhares de apostadores que já estão aumentando seus ganhos com nossas análises precisas de escanteios.</p>
+            <a href="https://play.google.com/store/apps/details?id=cornerbet.com" class="btn" target="_blank">
+                <i class="fab fa-google-play"></i> Baixe o CornerBet Agora
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CornerAnalytics</h3>
+                    <p>Especialistas em análise de escanteios desde 2017. Transformamos dados em resultados para apostadores.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="analises.html">Análises</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Produtos</h3>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/details?id=cornerbet.com" target="_blank">CornerBet App</a></li>
+                        <li><a href="#">Planos Premium</a></li>
+                        <li><a href="#">Consultoria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@corneranalytics.com</li>
+                        <li><i class="fab fa-whatsapp"></i> (11) 98765-4321</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CornerBet. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
