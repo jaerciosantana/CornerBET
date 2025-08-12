@@ -211,6 +211,12 @@
         const stronger = ataquesCasa > ataquesFora ? 'Casa' : 'Fora';
         results.push({text: `Grande domínio de ataques pela equipe ${stronger} — foco em oportunidades da equipe dominante.`, confidence: 'Média'});
       }
+      if (minuto >= 80 && minuto <= 86 && golsCasa === 0 && golsFora === 1 && escanteios > 10) {
+    results.push({
+        text: 'Jogo ideal para escanteios asiáticos (minuto 80-86, placar 0x1 e mais de 10 escanteios).',
+        confidence: 'Alta'
+    });
+     }
 
       // Heurística combinada: se muitas condições altas se aplicarem => aumentar confiança
       // calculamos score simples
@@ -278,6 +284,7 @@
   </script>
 </body>
 </html>
+
 
 
 
