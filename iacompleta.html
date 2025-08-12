@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CornerBet Pro - IA Revolucionária para Apostas em Escanteios</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2E86AB;
+            --secondary: #F18F01;
+            --dark: #2D3047;
+            --light: #F7F7FF;
+            --success: #5CB85C;
+            --danger: #D9534F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(241, 143, 1, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(241, 143, 1, 0.6);
+            background-color: #e68100;
+        }
+
+        .btn-lg {
+            padding: 18px 50px;
+            font-size: 20px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .countdown {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 500px;
+        }
+
+        .countdown-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-item {
+            background-color: var(--dark);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        .pricing {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.popular {
+            border: 3px solid var(--secondary);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price span {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .pricing-body {
+            padding: 30px;
+            color: var(--dark);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .pricing-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--success);
+            position: absolute;
+            left: 0;
+        }
+
+        .pricing-features li.disabled {
+            opacity: 0.5;
+        }
+
+        .pricing-features li.disabled::before {
+            content: '\f00d';
+            color: var(--danger);
+        }
+
+        .guarantee-badge {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 50px;
+            padding: 10px 20px;
+            margin-top: 30px;
+            border: 1px dashed #ddd;
+        }
+
+        .guarantee-icon {
+            font-size: 30px;
+            color: var(--success);
+            margin-right: 15px;
+        }
+
+        .guarantee-text {
+            font-size: 14px;
+        }
+
+        .guarantee-text strong {
+            display: block;
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 350px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            color: rgba(46, 134, 171, 0.1);
+            z-index: 0;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .rating {
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .btn-outline {
+                display: block;
+                margin: 15px auto 0;
+                width: fit-content;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>CornerBet Pro</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="#" class="active">CornerBet Pro</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">LANÇAMENTO EXCLUSIVO</span>
+                <h1>Revolucione Suas Apostas com IA</h1>
+                <p>O CornerBet Pro analisa em tempo real qualquer jogo que você selecionar, entregando previsões precisas de escanteios com 96,7% de assertividade.</p>
+                
+                <div class="countdown">
+                    <div class="countdown-text">Oferta especial termina em:</div>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">00</div>
+                            <div class="countdown-label">Dias</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">00</div>
+                            <div class="countdown-label">Horas</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">00</div>
+                            <div class="countdown-label">Minutos</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="seconds">00</div>
+                            <div class="countdown-label">Segundos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#pricing" class="btn btn-lg">QUERO O CORNERBET PRO AGORA!</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que o CornerBet Pro é a Escolha dos Profissionais</h2>
+                <p>Mais de 10.000 apostadores já transformaram seus resultados com nossa tecnologia exclusiva</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligência Artificial Avançada</h3>
+                    <p>Algoritmo que aprende com cada jogo analisado, aumentando continuamente sua precisão.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Análise em Tempo Real</h3>
+                    <p>Processa dados de qualquer jogo ao vivo em milissegundos, dando a você vantagem decisiva.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Estatísticas Detalhadas</h3>
+                    <p>Relatórios completos com probabilidades calculadas para cada momento do jogo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Notificações Inteligentes</h3>
+                    <p>Alertas instantâneos quando as condições ideais para apostas são identificadas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Gestão de Banca</h3>
+                    <p>Sugestões de valor de aposta baseadas no tamanho da sua banca e risco calculado.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Histórico Completo</h3>
+                    <p>Acesso a todos os seus palpites e desempenho para análise e melhoria contínua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Escolha Seu Plano Ideal</h2>
+                <p style="color: rgba(255,255,255,0.8)">Invista no seu sucesso com preços especiais de lançamento</p>
+            </div>
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Básico</h3>
+                        <div class="pricing-price">R$97<span>/mês</span></div>
+                        <p>Ideal para quem está começando</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Análise de até 3 jogos simultâneos</li>
+                            <li>5 alertas diários</li>
+                            <li>Estatísticas básicas</li>
+                            <li>Suporte por e-mail</li>
+                            <li class="disabled">Gestão de banca</li>
+                            <li class="disabled">Relatórios avançados</li>
+                            <li class="disabled">Palpites premium</li>
+                        </ul>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">ESCOLHER ESTE PLANO</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">MAIS POPULAR</div>
+                    <div class="pricing-header">
+                        <h3>Profissional</h3>
+                        <div class="pricing-price">R$197<span>/mês</span></div>
+                        <p>O preferido dos apostadores sérios</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Análise de até 10 jogos simultâneos</li>
+                            <li>Alertas ilimitados</li>
+                            <li>Estatísticas completas</li>
+                            <li>Suporte prioritário</li>
+                            <li>Gestão de banca inteligente</li>
+                            <li>Relatórios avançados</li>
+                            <li class="disabled">Palpites premium</li>
+                        </ul>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">ESCOLHER ESTE PLANO</a>
+                        
+                        <div class="guarantee-badge">
+                            <div class="guarantee-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="guarantee-text">
+                                <strong>90 Dias de Garantia</strong>
+                                Se não gostar, devolvemos seu dinheiro!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="pricing-price">R$297<span>/mês</span></div>
+                        <p>Para quem quer o máximo desempenho</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>Análise ilimitada de jogos</li>
+                            <li>Alertas ilimitados</li>
+                            <li>Estatísticas premium</li>
+                            <li>Suporte 24/7</li>
+                            <li>Gestão de banca avançada</li>
+                            <li>Relatórios completos</li>
+                            <li>+10 palpites premium diários</li>
+                        </ul>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">ESCOLHER ESTE PLANO</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px; color: rgba(255,255,255,0.7); font-size: 14px;">
+                <p><i class="fas fa-exclamation-triangle"></i> ATENÇÃO: Preços promocionais válidos apenas durante o lançamento. Após o término da contagem regressiva, os valores voltarão ao normal (R$147/mês, R$247/mês e R$347/mês respectivamente).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que dizem nossos clientes</h2>
+                <p>Veja como o CornerBet Pro está transformando a forma de apostar em escanteios</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Depois de 2 meses usando o CornerBet Pro, minha banca cresceu 320%. A IA identifica oportunidades que eu nunca perceberia sozinho. Vale cada centavo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Silva">
+                        <div class="author-info">
+                            <h4>Carlos Silva</h4>
+                            <p>Apostador Profissional</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Comprei com ceticismo, mas a garantia de 90 dias me convenceu. Em 3 semanas já tinha recuperado o investimento. Hoje não apostaria sem o CornerBet Pro."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Rodrigues">
+                        <div class="author-info">
+                            <h4>Ana Rodrigues</h4>
+                            <p>Gerente de Marketing</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Uso vários softwares de análise, mas o CornerBet Pro se destaca pela precisão nos escanteios. Minha taxa de acerto subiu de 68% para 92% após começar a seguir suas indicações."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Ricardo Almeida">
+                        <div class="author-info">
+                            <h4>Ricardo Almeida</h4>
+                            <p>Proprietário de Casa de Apostas</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+                <p>Tire suas dúvidas sobre o CornerBet Pro</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona a análise em tempo real?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nosso sistema coleta mais de 150 dados por minuto de cada jogo (posse de bola, finalizações, laterais, etc.) e os processa através de nosso algoritmo exclusivo. Em segundos, você recebe uma probabilidade atualizada de escanteios para os próximos minutos de jogo.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Preciso ter conhecimento avançado para usar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não! O CornerBet Pro foi desenvolvido para ser intuitivo. As recomendações são apresentadas de forma clara, com indicadores de risco e potencial de retorno. Além disso, oferecemos tutoriais completos e suporte dedicado para todos os usuários.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona a garantia de 90 dias?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Se em até 90 dias você não estiver satisfeito com os resultados, basta nos enviar um e-mail que devolveremos 100% do seu investimento, sem questionamentos. É nossa forma de demonstrar confiança no produto.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais ligas são cobertas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Analisamos todas as ligas profissionais do mundo. Nosso sistema tem desempenho especialmente bom nas principais ligas europeias (Premier League, La Liga, Bundesliga, etc.) e sul-americanas (Brasileirão, Argentino, etc.), mas funciona com excelência em qualquer liga profissional.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Posso testar antes de comprar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oferecemos uma demonstração gratuita com funcionalidades limitadas para você conhecer a plataforma. Mas acreditamos tanto no nosso produto que preferimos oferecer a garantia de 90 dias do que uma versão trial limitada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Não Deixe para Depois!</h2>
+            <p>Esta oferta especial de lançamento termina quando o contador chegar a zero. Garanta seu CornerBet Pro agora com desconto e comece a transformar suas apostas hoje mesmo.</p>
+            <a href="#pricing" class="btn btn-lg">QUERO MEU DESCONTO AGORA!</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CornerBet Pro</h3>
+                    <p>A ferramenta definitiva para apostas em escanteios, desenvolvida por especialistas em futebol e inteligência artificial.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="#">CornerBet Pro</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Política de Reembolso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> pro@cornerbet.com</li>
+                        <li><i class="fab fa-whatsapp"></i> (11) 98765-4321</li>
+                        <li><i class="fas fa-clock"></i> Suporte 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CornerBet Pro. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contador regressivo
+        function updateCountdown() {
+            const now = new Date();
+            const launchDate = new Date();
+            launchDate.setDate(now.getDate() + 3); // 3 dias a partir de agora
+            
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
