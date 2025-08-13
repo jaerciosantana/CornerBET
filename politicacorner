@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Corner Bet</title>
+    <style>
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1E1E1E;
+            --accent-green: #00FF88;
+            --accent-green-dark: #008050;
+            --text-primary: #E0E0E0;
+            --text-secondary: #A0A0A0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--accent-green-dark);
+            padding-bottom: 1rem;
+        }
+        
+        h1 {
+            color: var(--accent-green);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        
+        h2 {
+            color: var(--accent-green);
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent-green);
+            padding-left: 1rem;
+        }
+        
+        p, ul {
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            color: var(--accent-green);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background-color: rgba(0, 255, 136, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: var(--accent-green);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--primary-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-green-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--secondary-dark);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Política de Privacidade</h1>
+            <div class="logo">Corner Bet - Análises de Escanteios</div>
+        </header>
+        
+        <section>
+            <p>Última atualização: <span class="highlight">13 de agosto de 2023</span></p>
+            
+            <p>O aplicativo <span class="highlight">Corner Bet</span> ("nós", "nosso" ou "aplicativo") respeita sua privacidade e está comprometido em proteger seus dados pessoais. Esta política explica como tratamos suas informações quando você usa nosso aplicativo.</p>
+            
+            <h2>1. Informações que Coletamos</h2>
+            <p>Nosso aplicativo <span class="highlight">NÃO COLETA NENHUM DADO DO USUÁRIO</span> sem sua prévia autorização explícita.</p>
+            
+            <p>Após sua autorização, podemos coletar:</p>
+            <ul>
+                <li>Dados para anúncios personalizados (via AdMob)</li>
+                <li>Informações de diagnóstico para identificar falhas no sistema</li>
+                <li>Dados de uso para melhorias no aplicativo</li>
+                <li>Informações de compras dentro do aplicativo</li>
+            </ul>
+            
+            <h2>2. Como Usamos Suas Informações</h2>
+            <p>Quaisquer dados coletados após sua autorização são usados para:</p>
+            <ul>
+                <li>Exibir anúncios relevantes via AdMob</li>
+                <li>Identificar e corrigir problemas no aplicativo</li>
+                <li>Melhorar a experiência do usuário</li>
+                <li>Processar compras dentro do aplicativo</li>
+            </ul>
+            
+            <h2>3. Compartilhamento com Terceiros</h2>
+            <p>Podemos compartilhar dados com:</p>
+            <ul>
+                <li>Provedores de anúncios (Google AdMob) para exibir anúncios personalizados</li>
+                <li>Ferramentas de análise para melhorar nosso serviço</li>
+                <li>Plataformas de pagamento para processar compras</li>
+            </ul>
+            <p>Não vendemos seus dados pessoais a terceiros.</p>
+            
+            <h2>4. Anúncios e Compras no App</h2>
+            <p>Nosso aplicativo utiliza:</p>
+            <ul>
+                <li><span class="highlight">Google AdMob</span> para exibir anúncios</li>
+                <li>Opções de compras dentro do aplicativo para funcionalidades premium</li>
+            </ul>
+            <p>Todas as transações são processadas pelas plataformas oficiais (Google Play Store) e sujeitas às suas políticas de privacidade.</p>
+            
+            <h2>5. Seus Direitos</h2>
+            <p>Você tem o direito de:</p>
+            <ul>
+                <li>Revogar consentimentos a qualquer momento</li>
+                <li>Solicitar acesso aos dados coletados</li>
+                <li>Solicitar a exclusão de seus dados</li>
+                <li>Desativar a coleta de dados para personalização de anúncios</li>
+            </ul>
+            
+            <h2>6. Segurança</h2>
+            <p>Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado ou divulgação.</p>
+            
+            <h2>7. Alterações nesta Política</h2>
+            <p>Podemos atualizar esta política periodicamente. Notificaremos sobre mudanças significativas através do aplicativo.</p>
+            
+            <h2>8. Contato</h2>
+            <p>Para dúvidas sobre esta política ou seus dados pessoais, entre em contato conosco através das informações no aplicativo.</p>
+            
+            <center>
+                <a href="https://play.google.com/store/apps/details?id=cornerbet.com" class="btn">Baixar o Corner Bet</a>
+            </center>
+        </section>
+        
+        <footer>
+            <p>© 2023 Corner Bet - Todos os direitos reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
